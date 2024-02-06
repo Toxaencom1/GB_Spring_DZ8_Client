@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин товаров</title>
+    <link rel="stylesheet" href="/css/shop.css">
+</head>
+<body>
+
+<div>
+    Cчет Магазина: <span  th:text="${accountBalance.shopBalance}"></span>  - Только для демонстрации!<br>
+    Ваш счет: <span th:text="${accountBalance.userBalance}"></span>
+</div>
+
+<div>
+    <h2>Список продуктов</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Статус</th>
+            <th>Цена</th>
+            <th>Купить</th>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.status} ? 'Зарезервирован' : 'Доступен'"></td>
+            <td th:text="${product.cost}"></td>
+            <td>
+                <form th:action="@{/buy}" method="post">
+                    <input type="hidden" name="productId" th:value="${product.id}">
+<!--                    <button type="submit" th:disabled="${product.status == false}">Купить</button>-->
+                    <button type="submit" >Купить</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

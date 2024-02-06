@@ -1,0 +1,63 @@
+/* Общий стиль для всей страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стиль для контейнера счетов */
+div {
+    margin: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Стиль для заголовков */
+h2 {
+    color: #333;
+}
+
+/* Стиль для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Стиль для ячеек заголовка */
+th {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Стиль для ячеек данных */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Стиль для кнопок */
+button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Стиль для кнопок при наведении */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Стиль для отключенной кнопки */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
