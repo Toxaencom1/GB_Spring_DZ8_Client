@@ -23,7 +23,7 @@ public class TransactionService {
      * @return A ResponseEntity containing information about the transaction.
      */
     public ResponseEntity<String> buy(TransferRequest transferRequest) {
-        String url = STORAGE + "/transfer";
+        String url = STORAGE + "/payment/transfer";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -38,7 +38,7 @@ public class TransactionService {
      * @return A ResponseEntity containing the balance information.
      */
     public ResponseEntity<TransferBalance> getBalance() {
-        String url = STORAGE + "/balance";
+        String url = STORAGE + "/payment/balance";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 

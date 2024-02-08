@@ -3,12 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Магазин товаров</title>
-    <link rel="stylesheet" href="/css/shop.css">
+    <style>body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    div {
+        margin: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+
+    h2 {
+        color: #333;
+    }
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+
+    th {
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 2px solid #ccc;
+    }
+
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+
+    button {
+        padding: 8px 15px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    </style>
 </head>
 <body>
 
 <div>
-    Cчет Магазина: <span  th:text="${accountBalance.shopBalance}"></span>  - Только для демонстрации!<br>
+    Cчет Магазина: <span th:text="${accountBalance.shopBalance}"></span> - Только для демонстрации!<br>
     Ваш счет: <span th:text="${accountBalance.userBalance}"></span>
 </div>
 
@@ -28,10 +90,10 @@
             <td th:text="${product.status} ? 'Зарезервирован' : 'Доступен'"></td>
             <td th:text="${product.cost}"></td>
             <td>
-                <form th:action="@{/buy}" method="post">
+                <form th:action="@{/client/buy}" method="post">
                     <input type="hidden" name="productId" th:value="${product.id}">
-<!--                    <button type="submit" th:disabled="${product.status == false}">Купить</button>-->
-                    <button type="submit" >Купить</button>
+                    <!--                    <button type="submit" th:disabled="${product.status == false}">Купить</button>-->
+                    <button type="submit">Купить</button>
                 </form>
             </td>
         </tr>

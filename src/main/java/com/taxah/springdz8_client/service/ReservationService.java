@@ -26,7 +26,7 @@ public class ReservationService {
      * @return A ResponseEntity containing a list of products.
      */
     public ResponseEntity<List<Product>> getAllProducts() {
-        String url = STORAGE + "/api";
+        String url = STORAGE + "/store";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
