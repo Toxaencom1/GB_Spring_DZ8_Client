@@ -2,20 +2,41 @@ package com.taxah.springdz8_client.service;
 
 import com.taxah.springdz8_client.dto.TransferBalance;
 import com.taxah.springdz8_client.dto.TransferRequest;
+import com.taxah.springdz8_client.model.Product;
 import lombok.AllArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 /**
- * The TransactionService class provides methods to manage transactions.
+ * The ApiGatewayService class provides methods to manage external services.
  */
 @AllArgsConstructor
 @Component
-public class TransactionService {
-    private static final String STORAGE = "http://localhost:8081";
+public class ApiGatewayService {
+    private static final String GATEWAY = "http://localhost:8765";
     private RestTemplate template;
 
+    /**
+     * Retrieves all products from API in the reservation storage.
+     *
+     * @return A ResponseEntity containing a list of products.
+     */
+    public ResponseEntity<List<Product>> getAllProducts() {
+        String url = GATEWAY + "/store";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        ParameterizedTypeReference<List<Product>> responseType = new ParameterizedTypeReference<>() {
+        };
+
+        return template.exchange(
+                url, HttpMethod.GET, requestEntity, responseType);
+    }
     /**
      * Initiates a purchase transaction.
      *
@@ -23,7 +44,7 @@ public class TransactionService {
      * @return A ResponseEntity containing information about the transaction.
      */
     public ResponseEntity<String> buy(TransferRequest transferRequest) {
-        String url = STORAGE + "/payment/transfer";
+        String url = GATEWAY + "/payment/transfer";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -38,7 +59,7 @@ public class TransactionService {
      * @return A ResponseEntity containing the balance information.
      */
     public ResponseEntity<TransferBalance> getBalance() {
-        String url = STORAGE + "/payment/balance";
+        String url = GATEWAY + "/payment/balance";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 

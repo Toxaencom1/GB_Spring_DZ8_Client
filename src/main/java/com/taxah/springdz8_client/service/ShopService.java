@@ -3,7 +3,7 @@ package com.taxah.springdz8_client.service;
 import com.taxah.springdz8_client.dto.TransferBalance;
 import com.taxah.springdz8_client.dto.TransferRequest;
 import com.taxah.springdz8_client.model.Product;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,11 +11,10 @@ import java.util.List;
 /**
  * The ShopService class provides methods to interact with the shop functionalities.
  */
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class ShopService {
-    private TransactionService transactionService;
-    private ReservationService reservationService;
+    private  final ApiGatewayService apiGatewayService;
 
     /**
      * Retrieves all products available in the shop.
@@ -23,7 +22,7 @@ public class ShopService {
      * @return A list of products.
      */
     public List<Product> getAll() {
-        return reservationService.getAllProducts().getBody();
+        return apiGatewayService.getAllProducts().getBody();
     }
 
     /**
@@ -34,7 +33,7 @@ public class ShopService {
     public void buyProduct(Long productId) {
         TransferRequest tr = new TransferRequest();
         tr.setProductId(productId);
-        transactionService.buy(tr);
+        apiGatewayService.buy(tr);
     }
 
     /**
@@ -43,6 +42,6 @@ public class ShopService {
      * @return The balance information.
      */
     public TransferBalance getBalance() {
-        return transactionService.getBalance().getBody();
+        return apiGatewayService.getBalance().getBody();
     }
 }
