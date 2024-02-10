@@ -58,7 +58,7 @@ public class TrackUserAspect {
      * @return The result of the intercepted method execution.
      * @throws Throwable If an error occurs during method execution.
      */
-    @Around("execution(* com.taxah.springdz8_client.service.ShopService.*(..))")
+    @Around("execution(* com.taxah.springdz8_client.facade.ShopFacade.*(..))")
     @Order(10)
     public Object measureMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();

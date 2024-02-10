@@ -1,19 +1,20 @@
-package com.taxah.springdz8_client.service;
+package com.taxah.springdz8_client.facade;
 
 import com.taxah.springdz8_client.dto.TransferBalance;
 import com.taxah.springdz8_client.dto.TransferRequest;
 import com.taxah.springdz8_client.model.Product;
+import com.taxah.springdz8_client.service.ApiGatewayService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * The ShopService class provides methods to interact with the shop functionalities.
+ * The ShopFacade class provides methods to interact with the shop functionalities.
  */
 @RequiredArgsConstructor
 @Service
-public class ShopService {
+public class ShopFacade {
     private  final ApiGatewayService apiGatewayService;
 
     /**

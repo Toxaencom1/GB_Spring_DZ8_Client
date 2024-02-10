@@ -5,7 +5,7 @@ import com.taxah.springdz8_client.aspects.TrackUserAction;
 import com.taxah.springdz8_client.dto.TransferBalance;
 import com.taxah.springdz8_client.dto.TransferRequest;
 import com.taxah.springdz8_client.model.Product;
-import com.taxah.springdz8_client.service.ShopService;
+import com.taxah.springdz8_client.facade.ShopFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/client")
 public class WebShopController {
-    private ShopService service;
+    private ShopFacade shopFacade;
 
     /**
      * Retrieves all products and the user's account balance to display in the shop page.
@@ -35,8 +35,8 @@ public class WebShopController {
      */
     @GetMapping
     public String getAll(Model model) {
-        List<Product> products = service.getAll();
-        TransferBalance tr = service.getBalance();
+        List<Product> products = shopFacade.getAll();
+        TransferBalance tr = shopFacade.getBalance();
         model.addAttribute("products", products);
         model.addAttribute("accountBalance", tr);
         return "shop";
@@ -55,7 +55,7 @@ public class WebShopController {
         try {
             TransferRequest tr = new TransferRequest();
             tr.setProductId(id);
-            service.buyProduct(tr.getProductId());
+            shopFacade.buyProduct(tr.getProductId());
             return "redirect:/client";
         } catch (HttpClientErrorException e) {
             model.addAttribute("error", e.getMessage());
