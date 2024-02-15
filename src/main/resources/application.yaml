@@ -4,4 +4,10 @@ spring:
   application:
     name: Client
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, prometheus
+
 
