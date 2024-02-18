@@ -40,8 +40,8 @@ public class ShopFacade {
         TransferRequest tr = new TransferRequest();
         tr.setProductId(productId);
         apiGatewayService.buy(tr);
-        requestStringDecorator.setStringIdNumber(productId+"");
-        fileGateway.writeToFile("UserRequestLog.txt", productId+"");
+        requestStringDecorator.setStringIdNumber(productId + "");
+        fileGateway.writeToFile("UserRequestLog.txt", productId + "");
     }
 
     /**
