@@ -2,18 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Магазин товаров</title>
+    <title>Аукцион товаров</title>
     <link rel="stylesheet" href="/css/shop.css">
 </head>
 <body>
 
 <div>
-    Cчет Магазина: <span th:text="${accountBalance.shopBalance}"></span> - Только для демонстрации!<br>
+    <h2>Аукционный дом</h2>
+</div>
+<div>
+    Счет Аукциона: <span th:text="${accountBalance.shopBalance}"></span> - Только для демонстрации!<br>
     Ваш счет: <span th:text="${accountBalance.userBalance}"></span>
 </div>
 
 <div>
-    <h2>Список продуктов</h2>
+    <h2>Список лотов</h2>
     <table>
         <tr>
             <th>ID</th>
@@ -26,12 +29,12 @@
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.status} ? 'Зарезервирован' : 'Доступен'"></td>
-            <td th:text="${product.cost}"></td>
+            <td th:text="${product.cost} + ' $'"></td>
             <td>
                 <form th:action="@{/client/buy}" method="post">
                     <input type="hidden" name="productId" th:value="${product.id}">
                     <!--                    <button type="submit" th:disabled="${product.status == false}">Купить</button>-->
-                    <button type="submit">Купить</button>
+                    <button type="submit">Выкупить</button>
                 </form>
             </td>
         </tr>

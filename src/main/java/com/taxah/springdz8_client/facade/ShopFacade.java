@@ -3,8 +3,10 @@ package com.taxah.springdz8_client.facade;
 import com.taxah.springdz8_client.dto.TransferBalance;
 import com.taxah.springdz8_client.dto.TransferRequest;
 import com.taxah.springdz8_client.model.Product;
+import com.taxah.springdz8_client.model.RequestStringDecorator;
 import com.taxah.springdz8_client.service.ApiGatewayService;
-import lombok.RequiredArgsConstructor;
+import com.taxah.springdz8_client.service.FileGateway;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +14,13 @@ import java.util.List;
 /**
  * The ShopFacade class provides methods to interact with the shop functionalities.
  */
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Service
 public class ShopFacade {
-    private  final ApiGatewayService apiGatewayService;
+
+    private FileGateway fileGateway;
+    private RequestStringDecorator requestStringDecorator;
+    private final ApiGatewayService apiGatewayService;
 
     /**
      * Retrieves all products available in the shop.
@@ -35,6 +40,8 @@ public class ShopFacade {
         TransferRequest tr = new TransferRequest();
         tr.setProductId(productId);
         apiGatewayService.buy(tr);
+        requestStringDecorator.setStringIdNumber(productId+"");
+        fileGateway.writeToFile("UserRequestLog.txt", productId+"");
     }
 
     /**
